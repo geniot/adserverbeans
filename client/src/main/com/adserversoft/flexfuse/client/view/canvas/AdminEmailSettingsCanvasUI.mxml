@@ -1,0 +1,88 @@
+<ads:AdminEmailSettingsCanvas xmlns:ads="http://adserversoft.com"
+                              xmlns:mx="http://www.adobe.com/2006/mxml"
+                              width="100%"
+                              height="100%">
+
+    <mx:StringValidator id="emailSubjectStringValidator"
+                        source="{emailSubjectTI}"
+                        property="text"
+                        minLength="1"
+                        maxLength="256"/>
+
+    <mx:StringValidator id="userNameStringValidator"
+                        source="{userNameTI}"
+                        property="text"
+                        minLength="2"
+                        maxLength="60"/>
+
+    <mx:StringValidator id="passwordStringValidator"
+                        source="{passwordTI}"
+                        property="text"
+                        minLength="4"
+                        maxLength="60"/>
+
+    <mx:StringValidator id="serverNameStringValidator"
+                        source="{smtpServerTI}"
+                        property="text"
+                        minLength="4"
+                        maxLength="60"/>
+
+    <mx:EmailValidator id="supportEmailStringValidator"
+                       source="{supportEmailTI}"
+                       property="text"/>
+
+    <mx:EmailValidator id="fromEmailStringValidator"
+                       source="{fromEmailTI}"
+                       property="text"/>
+
+    <mx:VBox width="100%" height="100%"
+             paddingBottom="10"
+             paddingLeft="10"
+             paddingRight="10"
+             paddingTop="10">
+
+        <mx:Form height="100%" width="100%">
+
+            <mx:FormItem id="smtpServerFI" label="Host:" required="true" width="100%">
+                <mx:TextInput maxChars="256"
+                              id="smtpServerTI" dropShadowColor="0x000000" width="100%"/>
+            </mx:FormItem>
+
+            <mx:FormItem id="smtpServerPortFI" label="Port:" required="true" width="100%">
+                <mx:TextInput maxChars="6" id="smtpServerPortTI" dropShadowColor="0x000000" width="100%"
+                              restrict="0-9"/>
+            </mx:FormItem>
+
+
+            <mx:FormItem id="userNameFI" label="Username:" required="true" width="100%">
+                <mx:TextInput maxChars="100"
+                              id="userNameTI" dropShadowColor="0x000000" width="100%"/>
+            </mx:FormItem>
+
+
+            <mx:FormItem id="passwordFI" label="Password:" required="true" width="100%">
+                <mx:TextInput maxChars="100"
+                              id="passwordTI" dropShadowColor="0x000000" width="100%" displayAsPassword="true"/>
+            </mx:FormItem>
+
+            <mx:FormItem id="fromEmailFI" label="From:" required="true" width="100%">
+                <mx:TextInput maxChars="256"
+                              id="fromEmailTI" dropShadowColor="0x000000" width="100%"/>
+            </mx:FormItem>
+
+            <mx:FormItem id="emailSubjectFI" label="Subject:" required="true" width="100%">
+                <mx:TextInput maxChars="256"
+                              id="emailSubjectTI" dropShadowColor="0x000000" width="100%"/>
+            </mx:FormItem>
+
+            <mx:FormItem id="supportEmailFI" label="Support:" required="true" width="100%">
+                <mx:TextInput maxChars="256"
+                              id="supportEmailTI" dropShadowColor="0x000000" width="100%"/>
+            </mx:FormItem>
+
+
+        </mx:Form>
+
+    </mx:VBox>
+
+</ads:AdminEmailSettingsCanvas>

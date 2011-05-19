@@ -1,0 +1,24 @@
+<ads:BannerTargetingCanvas xmlns:ads="http://adserversoft.com"
+                           xmlns:mx="http://www.adobe.com/2006/mxml"
+                           xmlns:component="com.adserversoft.flexfuse.client.view.component.*"
+                           xmlns:canvas="com.adserversoft.flexfuse.client.view.canvas.*"
+                           width="100%"
+                           height="100%"
+                           creationPolicy="all">
+    <mx:VBox paddingRight="4" paddingBottom="3" paddingTop="0" paddingLeft="4" width="100%" height="100%">
+        <mx:TabNavigator id="tabNavigator" width="100%" height="100%" >
+            <canvas:BannerTargetingTimeCanvasUI id="bannerTargetingTimeCanvas" mode="{mode}" label="Days of Week"/>
+            <canvas:BannerTargetingTimeHourCanvasUI id="bannerTargetingTimeHourCanvas" mode="{mode}" label="Time of Day"/>
+            <canvas:BannerTargetingCappingCanvasUI id="bannerTargetingCappingCanvas" mode="{mode}" label="Capping"/>
+            <canvas:BannerTargetingGeoCanvasUI id="bannerTargetingGeoCanvas" mode="{mode}" label="Geo"/>
+            <canvas:BannerTargetingBrowserCanvasUI id="bannerTargetingBrowserCanvas" mode="{mode}" label="Browser"/>
+            <canvas:BannerTargetingOsCanvasUI id="bannerTargetingOsCanvas" mode="{mode}" label="OS"/>
+            <canvas:BannerTargetingLanguageCanvasUI id="bannerTargetingLanguageCanvas" mode="{mode}" label="Language"/>
+            <canvas:BannerTargetingPageUrlCanvasUI id="bannerTargetingPageUrlCanvas" mode="{mode}" label="URL"/>
+            <canvas:BannerTargetingReferrerUrlCanvasUI id="bannerTargetingReferrerUrlCanvas" mode="{mode}" label="Referrer"/>
+            <canvas:BannerTargetingDynamicParametersCanvasUI id="bannerTargetingDynamicParametersCanvas" mode="{mode}" label="Dynamic Parameters"/>
+            <canvas:BannerTargetingIpPatternsCanvasUI id="bannerTargetingIpPatternsCanvas" mode="{mode}" label="IP Mask"/>
+        </mx:TabNavigator>
+    </mx:VBox>
+
+</ads:BannerTargetingCanvas>

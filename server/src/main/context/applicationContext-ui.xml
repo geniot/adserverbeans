@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename">
+            <value>classpath:ApplicationResource</value>
+        </property>
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
+        </property>
+        <property name="cacheSeconds">
+            <value>0</value>
+        </property>
+        <property name="fallbackToSystemLocale">
+            <value>true</value>
+        </property>
+    </bean>
+
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="locations">
+            <value>classpath:app.properties</value>
+        </property>
+    </bean>
+
+    <bean id="contextAwareSpringBean"
+          class="com.adserversoft.flexfuse.server.api.ContextAwareSpringBean">
+    </bean>
+
+    <!--user-->
+    <bean id="user"
+          class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.adserversoft.flexfuse.server.api.ui.IUserService</value>
+        </property>
+        <property name="target">
+            <ref bean="userServiceTarget"/>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>instSetterAdvisor</value>
+                <value>versionExpiredAdvisor</value>
+                <value>sessionExpiredAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="userServiceTarget"
+          class="com.adserversoft.flexfuse.server.ui.UserService"
+          autowire="byName">
+    </bean>
+
+    <!--session-->
+    <bean name="sessionService"
+          class="com.adserversoft.flexfuse.server.ui.SessionService"
+          autowire="byName">
+    </bean>
+
+    <!--banner-->
+    <bean id="banner"
+          class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.adserversoft.flexfuse.server.api.ui.IBannerService</value>
+        </property>
+        <property name="target">
+            <ref bean="bannerServiceTarget"/>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>instSetterAdvisor</value>
+                <value>versionExpiredAdvisor</value>
+                <value>sessionExpiredAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="bannerServiceTarget"
+          class="com.adserversoft.flexfuse.server.ui.BannerService"
+          autowire="byName">
+    </bean>
+
+
+    <bean id="settings"
+          class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.adserversoft.flexfuse.server.api.ui.ISettingsService</value>
+        </property>
+        <property name="target">
+            <ref bean="settingsServiceTarget"/>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>instSetterAdvisor</value>
+                <value>sessionExpiredAdvisor</value>
+                <value>versionExpiredAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="settingsServiceTarget"
+          class="com.adserversoft.flexfuse.server.ui.SettingsService"
+          autowire="byName">
+    </bean>
+
+
+    <!--State-->
+    <bean id="state"
+          class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.adserversoft.flexfuse.server.api.ui.IStateService</value>
+        </property>
+        <property name="target">
+            <ref bean="stateServiceTarget"/>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>instSetterAdvisor</value>
+                <value>sessionExpiredAdvisor</value>
+                <value>versionExpiredAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="stateServiceTarget"
+          class="com.adserversoft.flexfuse.server.ui.StateService"
+          autowire="byName">
+    </bean>
+
+    <!--Report-->
+    <bean id="report"
+          class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.adserversoft.flexfuse.server.api.ui.IReportService</value>
+        </property>
+        <property name="target">
+            <ref bean="reportServiceTarget"/>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>instSetterAdvisor</value>
+                <value>sessionExpiredAdvisor</value>
+                <value>versionExpiredAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="reportServiceTarget"
+          class="com.adserversoft.flexfuse.server.ui.ReportService"
+          autowire="byName">
+    </bean>
+
+    <!-- advisors -->
+
+
+    <bean id="versionExpiredAdvisor"
+          class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice">
+            <ref local="versionExpiredAdvice"/>
+        </property>
+        <property name="pattern">
+            <value>.*</value>
+        </property>
+    </bean>
+
+    <bean id="instSetterAdvisor"
+          class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice">
+            <ref local="instSetterAdvice"/>
+        </property>
+        <property name="pattern">
+            <value>.*</value>
+        </property>
+    </bean>
+
+    <bean id="sessionExpiredAdvice"
+          class="com.adserversoft.flexfuse.server.ui.SessionExpiredAdvice"
+          autowire="byName"
+            />
+
+
+    <bean id="sessionExpiredAdvisor"
+          class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice">
+            <ref local="sessionExpiredAdvice"/>
+        </property>
+        <property name="pattern">
+            <value>.*</value>
+        </property>
+    </bean>
+
+    <bean id="versionExpiredAdvice"
+          class="com.adserversoft.flexfuse.server.ui.VersionExpiredAdvice"
+          autowire="byName"
+            />
+
+    <bean id="instSetterAdvice"
+          class="com.adserversoft.flexfuse.server.ui.InstSetterAdvice"
+          autowire="byName"
+            />
+
+    <import resource="applicationContext-adserver.xml"></import>
+    <import resource="applicationContext-service.xml"></import>
+
+
+</beans>

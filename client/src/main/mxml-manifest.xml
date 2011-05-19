@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<componentPackage>
+    <component id="FlexFuseApplication" class="com.adserversoft.flexfuse.client.view.FlexFuseApplication"/>
+
+    <!--canvas-->
+    <component id="AdminEmailSettingsCanvas" class="com.adserversoft.flexfuse.client.view.canvas.AdminEmailSettingsCanvas"/>
+    <component id="BannerInfoCanvas" class="com.adserversoft.flexfuse.client.view.canvas.BannerInfoCanvas"/>
+    <component id="BannerTargetingCanvas" class="com.adserversoft.flexfuse.client.view.canvas.BannerTargetingCanvas"/>
+    <component id="BannerTargetingTimeCanvas" class="com.adserversoft.flexfuse.client.view.canvas.BannerTargetingTimeCanvas"/>
+    <component id="BannerTargetingTimeHourCanvas" class="com.adserversoft.flexfuse.client.view.canvas.BannerTargetingTimeHourCanvas"/>
+    <component id="BannerTargetingCappingCanvas" class="com.adserversoft.flexfuse.client.view.canvas.BannerTargetingCappingCanvas"/>
+    <component id="BannerTargetingGeoCanvas" class="com.adserversoft.flexfuse.client.view.canvas.BannerTargetingGeoCanvas"/>
+    <component id="BannerTargetingBrowserCanvas" class="com.adserversoft.flexfuse.client.view.canvas.BannerTargetingBrowserCanvas"/>
+    <component id="BannerTargetingPageUrlCanvas" class="com.adserversoft.flexfuse.client.view.canvas.BannerTargetingPageUrlCanvas"/>
+    <component id="BannerTargetingReferrerUrlCanvas" class="com.adserversoft.flexfuse.client.view.canvas.BannerTargetingReferrerUrlCanvas"/>
+    <component id="BannerTargetingDynamicParametersCanvas" class="com.adserversoft.flexfuse.client.view.canvas.BannerTargetingDynamicParametersCanvas"/>
+    <component id="BannerTargetingOsCanvas" class="com.adserversoft.flexfuse.client.view.canvas.BannerTargetingOsCanvas"/>
+    <component id="BannerTargetingIpPatternsCanvas" class="com.adserversoft.flexfuse.client.view.canvas.BannerTargetingIpPatternsCanvas"/>
+    <component id="BannerTargetingLanguageCanvas" class="com.adserversoft.flexfuse.client.view.canvas.BannerTargetingLanguageCanvas"/>
+    <component id="AdminManagementCanvas" class="com.adserversoft.flexfuse.client.view.canvas.AdminManagementCanvas"/>
+    <component id="GuestManagementCanvas" class="com.adserversoft.flexfuse.client.view.canvas.GuestManagementCanvas"/>
+    <component id="AdminSettingsCanvas" class="com.adserversoft.flexfuse.client.view.canvas.AdminSettingsCanvas"/>
+    <component id="LoginCanvas" class="com.adserversoft.flexfuse.client.view.canvas.LoginCanvas"/>
+    <component id="InstallDBCanvas" class="com.adserversoft.flexfuse.client.view.canvas.InstallDBCanvas"/>
+    <component id="InstallDBManagementCanvas" class="com.adserversoft.flexfuse.client.view.canvas.InstallDBManagementCanvas"/>
+    <component id="ReportSettingsCanvas" class="com.adserversoft.flexfuse.client.view.canvas.ReportSettingsCanvas"/>
+    <component id="ReportResultsCanvas" class="com.adserversoft.flexfuse.client.view.canvas.ReportResultsCanvas"/>
+    <component id="ReportViewTableCanvas" class="com.adserversoft.flexfuse.client.view.canvas.ReportViewTableCanvas"/>
+    <component id="ReportViewChartLineCanvas" class="com.adserversoft.flexfuse.client.view.canvas.ReportViewChartLineCanvas"/>
+    <component id="ReportViewChartBarCanvas" class="com.adserversoft.flexfuse.client.view.canvas.ReportViewChartBarCanvas"/>
+    <component id="ReportViewChartPieCanvas" class="com.adserversoft.flexfuse.client.view.canvas.ReportViewChartPieCanvas"/>
+
+    <!--title windows-->
+    <component id="BannerTitleWindow" class="com.adserversoft.flexfuse.client.view.titlewindow.BannerTitleWindow"/>
+    <component id="PasswordReminderTitleWindow" class="com.adserversoft.flexfuse.client.view.titlewindow.PasswordReminderTitleWindow"/>
+    <component id="SettingsTitleWindow" class="com.adserversoft.flexfuse.client.view.titlewindow.SettingsTitleWindow"/>
+    <component id="ResetPasswordTitleWindow" class="com.adserversoft.flexfuse.client.view.titlewindow.ResetPasswordTitleWindow"/>
+    <component id="AdTagTitleWindow" class="com.adserversoft.flexfuse.client.view.titlewindow.AdTagTitleWindow"/>
+    <component id="EmailReminderTitleWindow" class="com.adserversoft.flexfuse.client.view.titlewindow.EmailReminderTitleWindow"/>
+    <component id="LoginTitleWindow" class="com.adserversoft.flexfuse.client.view.titlewindow.LoginTitleWindow"/>
+    <component id="ReportsTitleWindow" class="com.adserversoft.flexfuse.client.view.titlewindow.ReportsTitleWindow"/>
+    <component id="TrashTitleWindow" class="com.adserversoft.flexfuse.client.view.titlewindow.TrashTitleWindow"/>
+
+    <!--component-->
+    <component id="FindSelectedItemComboBox" class="com.adserversoft.flexfuse.client.view.component.FindSelectedItemComboBox"/>
+    <component id="NoTrimStringValidator" class="com.adserversoft.flexfuse.client.view.component.NoTrimStringValidator"/>
+
+    <!--viewstack-->
+    <component id="MainPanelViewStack" class="com.adserversoft.flexfuse.client.view.viewstack.MainPanelViewStack"/>
+    
+    <!--DND-->
+    <component id="DragNDropWizard" class="com.adserversoft.flexfuse.client.view.component.dnd.DragNDropWizard"/>
+    <component id="AdPlacesPanel" class="com.adserversoft.flexfuse.client.view.component.dnd.AdPlacesPanel"/>
+    <component id="BannersPanel" class="com.adserversoft.flexfuse.client.view.component.dnd.BannersPanel"/>
+    <component id="BannerView" class="com.adserversoft.flexfuse.client.view.component.dnd.BannerView"/>
+    <component id="AdPlaceView" class="com.adserversoft.flexfuse.client.view.component.dnd.AdPlaceView"/>
+    <component id="Paddock" class="com.adserversoft.flexfuse.client.view.component.dnd.Paddock"/>
+    <component id="AutosizeVBox" class="com.adserversoft.flexfuse.client.view.component.dnd.AutosizeVBox"/>
+</componentPackage>

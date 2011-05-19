@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<ads:TrashTitleWindow xmlns:ads="http://adserversoft.com"
+                      xmlns:mx="http://www.adobe.com/2006/mxml"
+                      xmlns:component="com.adserversoft.flexfuse.client.view.component.*"
+                      xmlns:canvas="com.adserversoft.flexfuse.client.view.canvas.*"
+                      width="900"
+                      height="650">
+    <mx:DataGrid id="trashDataGrid" showHeaders="true" height="100%" width="100%" doubleClickEnabled="false">
+        <mx:columns>
+            <mx:DataGridColumn headerWordWrap="false" headerText="Name" dataField="name"
+                               sortable="false"
+                               wordWrap="false"/>
+            <mx:DataGridColumn headerWordWrap="false" headerText="Type" dataField="typeName"
+                               sortable="false"
+                               wordWrap="false"
+                               width="100"/>
+
+            <mx:DataGridColumn headerWordWrap="false" headerText="Views" dataField="views"
+                               sortable="false"
+                               wordWrap="false"
+                               width="100"/>
+            <mx:DataGridColumn headerWordWrap="false" headerText="Clicks" dataField="clicks"
+                               sortable="false"
+                               wordWrap="false"
+                               width="100"/>
+        </mx:columns>
+    </mx:DataGrid>
+    <mx:ControlBar width="100%">
+        <mx:Spacer width="100%"/>
+        <mx:Button id="cancelBtn"
+                   label="Cancel"/>
+    </mx:ControlBar>
+
+</ads:TrashTitleWindow>

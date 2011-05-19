@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ads:SettingsTitleWindow
+        xmlns:ads="http://adserversoft.com"
+        xmlns:mx="http://www.adobe.com/2006/mxml"
+        xmlns:component="com.adserversoft.flexfuse.client.view.component.*"
+        xmlns:canvas="com.adserversoft.flexfuse.client.view.canvas.*"
+        title="Settings"
+        showCloseButton="true"
+        creationPolicy="all"
+        height="420"
+        width="480">
+    <mx:TabNavigator id="tabNavigator" width="100%" height="100%">
+        <canvas:AdminSettingsCanvasUI id="adminSettingsCanvas" label="Profile"/>
+        <!--<canvas:AdminEmailSettingsCanvasUI id="adminEmailSettingsCanvas" label="SMTP" />-->
+    </mx:TabNavigator>
+    <mx:ControlBar width="100%">
+        <mx:Button id="saveBtn"
+                   label="Save"/>
+        <mx:Spacer width="100%"/>
+        <mx:Button id="cancelBtn"
+                   label="Cancel"/>
+    </mx:ControlBar>
+
+</ads:SettingsTitleWindow>

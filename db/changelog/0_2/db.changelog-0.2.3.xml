@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="1" author="Vladimir Budanov">
+        <addForeignKeyConstraint constraintName="fk_banner_ad_place_uid"
+                                 baseTableName="banner" baseColumnNames="ad_place_uid"
+                                 referencedTableName="ad_place" referencedColumnNames="uid"/>
+    </changeSet>
+</databaseChangeLog>
+
+
+
+
+

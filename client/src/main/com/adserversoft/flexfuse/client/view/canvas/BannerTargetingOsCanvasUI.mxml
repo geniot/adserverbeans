@@ -1,0 +1,35 @@
+<ads:BannerTargetingOsCanvas xmlns:ads="http://adserversoft.com"
+                                  xmlns:mx="http://www.adobe.com/2006/mxml"
+                                  width="100%"
+                                  height="100%"
+                                  creationPolicy="all">
+    <mx:HBox width="100%" creationPolicy="all">
+        <mx:Spacer width="5"/>
+        <mx:VBox width="100%" creationPolicy="all">
+            <mx:RadioButton id="allRB" groupName="os" label="All operating systems" selected="true"/>
+            <mx:RadioButton id="someRB" groupName="os" label="Selected operating system"/>
+            <mx:HBox width="100%" id="osHB" paddingLeft="22">
+                <mx:VBox width="50%">
+                    <mx:CheckBox id="cb0" label="Windows 7"/>
+                    <mx:CheckBox id="cb1" label="Windows XP"/>
+                    <mx:CheckBox id="cb2" label="Windows Vista"/>
+                    <mx:CheckBox id="cb3" label="Windows Server 2003"/>
+                    <mx:CheckBox id="cb4" label="Windows 2000"/>
+                    <mx:CheckBox id="cb5" label="Windows NT"/>
+                    <mx:CheckBox id="cb6" label="Windows 98"/>
+                    <mx:CheckBox id="cb7" label="Windows 95"/>
+                    <mx:CheckBox id="cb8" label="Windows ME"/>
+                    <mx:CheckBox id="cb9" label="Windows CE"/>
+                </mx:VBox>
+                <mx:VBox width="50%">
+                    <mx:CheckBox id="cb10" label="Linux"/>
+                    <mx:CheckBox id="cb11" label="Mac OS X"/>
+                    <mx:CheckBox id="cb12" label="Mac"/>
+                    <mx:CheckBox id="cb13" label="FreeBSD"/>
+                    <mx:CheckBox id="cb14" label="Solaris"/>
+                    <mx:CheckBox id="cb15" label="Unknown"/>
+                </mx:VBox>
+            </mx:HBox>
+        </mx:VBox>
+    </mx:HBox>
+</ads:BannerTargetingOsCanvas>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="1" author="Dmitrii Lemeshevsky">
+        <createTable tableName="country">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="country_abbr_small" type="varchar(2)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="country_abbr" type="varchar(3)">
+                <constraints unique="false" nullable="false"/>
+            </column>
+            <column name="country_name" type="varchar(50)">
+                <constraints unique="false" nullable="false"/>
+            </column>
+        </createTable>
+
+        <addAutoIncrement tableName="country" columnName="id" columnDataType="int"/>
+
+        <createTable tableName="ip_to_country">
+            <column name="ip_from" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ip_to" type="bigint">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="country_id" type="int">
+                <constraints unique="false" nullable="false"/>
+            </column>
+        </createTable>
+
+        <addColumn tableName="banner">
+            <column name="country_bits" type="varchar(239)"/>
+        </addColumn>
+
+        <update tableName="banner">
+            <column name="country_bits" value="11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"/>
+            <where>country_bits is NULL</where>
+        </update>
+    </changeSet>
+</databaseChangeLog>

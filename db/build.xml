@@ -1,0 +1,52 @@
+<!--
+Author: Vitaly Sazanovich
+Email: Vitaly.Sazanovich@gmail.com
+-->
+
+<project name="myads" default="update-database" basedir=".">
+
+
+     <path id="lib.class.path">      
+        <fileset dir="../lib/optional">
+            <include name="**/*.jar"/>
+        </fileset>
+         <fileset dir="../lib/required">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <taskdef classpathref="lib.class.path" resource="liquibasetasks.properties"/>
+
+    <property name="db.changelog.file" value=""/>
+    <property name="database.driver" value=""/>
+    <property name="database.db" value=""/>
+    <property name="database.url" value=""/>
+    <property name="database.username" value=""/>
+    <property name="database.password" value=""/>
+
+    <target name="update-database">
+        <fail unless="db.changelog.file">db.changelog.file not set</fail>
+        <fail unless="database.url">database.url not set</fail>
+
+        <fail unless="database.username">database.username not set</fail>
+        <fail unless="database.password">database.password not set</fail>
+
+        <updateDatabase
+                changeLogFile="${db.changelog.file}"
+                driver="${database.driver}"
+                url="${database.url}"
+                username="${database.username}"
+                password="${database.password}"
+                promptOnNonLocalDatabase="false"
+                dropFirst="false"
+                classpathref="lib.class.path"
+                />
+
+    </target>
+
+
+</project>
+
+
+
+

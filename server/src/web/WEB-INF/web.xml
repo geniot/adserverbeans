@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+    <display-name>ASB MyAds</display-name>
+    <description>Publisher's tool for setting up ads.</description>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/config/web-application-config.xml
+            /WEB-INF/config/web-application-security.xml
+        </param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>messagebroker</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ASB Upload Servlet</servlet-name>
+        <servlet-class>com.adserversoft.flexfuse.server.ui.UploadServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Control DB Version Servlet</servlet-name>
+        <servlet-class>com.adserversoft.flexfuse.server.ui.ControlDBVersionServlet</servlet-class>
+        <load-on-startup>3</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ASB Control Version Servlet</servlet-name>
+        <servlet-class>com.adserversoft.flexfuse.server.ui.ControlVersionServlet</servlet-class>
+        <load-on-startup>4</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>asb-adserver</servlet-name>
+        <servlet-class>com.adserversoft.flexfuse.server.adserver.AdServerServlet</servlet-class>
+        <load-on-startup>5</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>asb-logo</servlet-name>
+        <servlet-class>com.adserversoft.flexfuse.server.ui.LogoServlet</servlet-class>
+        <load-on-startup>6</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PreviewServlet</servlet-name>
+        <servlet-class>com.adserversoft.flexfuse.server.ui.PreviewServlet</servlet-class>
+        <load-on-startup>7</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>asb-export</servlet-name>
+        <servlet-class>com.adserversoft.flexfuse.server.ui.ExcelFileServlet</servlet-class>
+        <load-on-startup>8</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AdTagServlet</servlet-name>
+        <servlet-class>com.adserversoft.flexfuse.server.adserver.AdTagServlet</servlet-class>
+        <load-on-startup>9</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ShowAdsServlet</servlet-name>
+        <servlet-class>com.adserversoft.flexfuse.server.adserver.ShowAdsServlet</servlet-class>
+        <load-on-startup>10</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>messagebroker</servlet-name>
+        <url-pattern>/messagebroker/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ASB Upload Servlet</servlet-name>
+        <url-pattern>/asb</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>asb-adserver</servlet-name>
+        <url-pattern>/sv</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>asb-logo</servlet-name>
+        <url-pattern>/logo</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PreviewServlet</servlet-name>
+        <url-pattern>/preview</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>asb-export</servlet-name>
+        <url-pattern>/exportexcel</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AdTagServlet</servlet-name>
+        <url-pattern>/adtag</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ShowAdsServlet</servlet-name>
+        <url-pattern>/show_ads.js</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+    </welcome-file-list>
+
+</web-app>

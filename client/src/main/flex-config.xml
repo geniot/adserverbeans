@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<flex-config>
+    <licenses>
+        <license>
+            <product>flexbuilder3</product>
+            <serial-number>1377-4127-0755-8925-3996-9744</serial-number>
+        </license>
+    </licenses>
+    <compiler>
+        <debug>true</debug>
+        <namespaces>
+            <namespace>
+                <uri>http://adserversoft.com</uri>
+                <manifest>mxml-manifest.xml</manifest>
+            </namespace>
+        </namespaces>
+    </compiler>
+    <file-specs>
+        <path-element>client/src/main/FlexFuse.mxml</path-element>
+    </file-specs>
+</flex-config>

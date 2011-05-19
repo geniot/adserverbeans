@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ads:BannerTitleWindow
+        xmlns:ads="http://adserversoft.com"
+        xmlns:mx="http://www.adobe.com/2006/mxml"
+        xmlns:component="com.adserversoft.flexfuse.client.view.component.*"
+        xmlns:canvas="com.adserversoft.flexfuse.client.view.canvas.*"
+        title="Add Banner"
+        showCloseButton="true"
+        width="900"
+        height="650"
+        creationPolicy="all">
+
+    <mx:VBox paddingRight="1" paddingBottom="0" paddingTop="0" paddingLeft="1" width="100%"
+             height="100%">
+        <mx:TabNavigator id="tabNavigator" width="100%" height="100%">
+            <canvas:BannerInfoCanvasUI id="bannerInfoCanvas" label="Info" mode="{mode}" />
+            <canvas:BannerTargetingCanvasUI id="bannerTargetingCanvas" label="Targeting" mode="{mode}"/>
+        </mx:TabNavigator>
+    </mx:VBox>
+        <mx:ControlBar width="100%">
+            <mx:Button id="saveBtn"
+                       label="Save"/>
+            <mx:Spacer width="100%"/>
+            <mx:Button id="cancelBtn"
+                       label="Cancel"/>
+        </mx:ControlBar>
+
+
+
+</ads:BannerTitleWindow>

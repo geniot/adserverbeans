@@ -1,0 +1,48 @@
+<ads:BannerTargetingIpPatternsCanvas xmlns:ads="http://adserversoft.com"
+                                     xmlns:mx="http://www.adobe.com/2006/mxml"
+                                     xmlns:component="com.adserversoft.flexfuse.client.view.component.*"
+                                     xmlns:canvas="com.adserversoft.flexfuse.client.view.canvas.*"
+                                     width="100%"
+                                     height="100%"
+                                     creationPolicy="all">
+    <mx:HBox width="100%" creationPolicy="all" height="100%">
+        <mx:Spacer width="5"/>
+        <mx:VBox width="100%" creationPolicy="all" height="100%">
+
+            <mx:FormItem id="patternLbl" label="IP mask:" width="100%">
+                <mx:HBox>
+                    <mx:TextInput maxChars="3"
+                                  id="patternTI1" dropShadowColor="0x000000" enabled="true" width="30" restrict="0-9*"/>
+                    <mx:Label text="." paddingTop="9" paddingLeft="-6" paddingRight="-18"/>
+                    <mx:TextInput maxChars="3"
+                                  id="patternTI2" dropShadowColor="0x000000" enabled="true" width="30" restrict="0-9*"/>
+                    <mx:Label text="." paddingTop="9" paddingLeft="-6" paddingRight="-18"/>
+                    <mx:TextInput maxChars="3"
+                                  id="patternTI3" dropShadowColor="0x000000" enabled="true" width="30" restrict="0-9*"/>
+                    <mx:Label text="." paddingTop="9" paddingLeft="-6" paddingRight="-18"/>
+                    <mx:TextInput maxChars="3"
+                                  id="patternTI4" dropShadowColor="0x000000" enabled="true" width="30" restrict="0-9*"/>
+                    <mx:Button label="Add" id="addPtrnBtn"/>
+                    <mx:Label htmlText="&lt;b&gt;Tip:&lt;/b&gt; use &lt;b&gt;*&lt;/b&gt; to define a mask (otherwise exact IP match)"/>
+                </mx:HBox>
+            </mx:FormItem>
+
+            <mx:DataGrid showHeaders="true" id="ipPatternsDataGrid" height="100%" width="100%" variableRowHeight="true" doubleClickEnabled="true"
+                         dataProvider="{ipPatternsDataProvider}">
+                <mx:columns>
+                    <mx:DataGridColumn headerWordWrap="true" headerText="Masks" id="dateColumn"
+                                       dataField="ipPattern"
+                                       sortable="false"
+                                       wordWrap="true"/>
+                    <mx:DataGridColumn headerWordWrap="true" headerText="" id="eventTypeColumn"
+                                       itemRenderer="com.adserversoft.flexfuse.client.view.component.linkbutton.DeletePatternLinkButton"
+                                       sortable="false"
+                                       wordWrap="true" width="30"/>
+
+                </mx:columns>
+            </mx:DataGrid>
+            <mx:Spacer width="5"/>
+        </mx:VBox>
+        <mx:Spacer width="5"/>
+    </mx:HBox>
+</ads:BannerTargetingIpPatternsCanvas>

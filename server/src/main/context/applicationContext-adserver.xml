@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean name="adCodeProcessor"
+          class="com.adserversoft.flexfuse.server.adserver.AdCodeProcessor"
+          autowire="byName">
+
+    </bean>
+    <bean name="fileProcessor"
+          class="com.adserversoft.flexfuse.server.adserver.FileProcessor"
+          autowire="byName">
+    </bean>
+    <bean name="clickProcessor"
+          class="com.adserversoft.flexfuse.server.adserver.ClickProcessor"
+          autowire="byName">
+        <property name="bannerNotFoundOnClickRedirectUrl">
+            <value>${bannerNotFoundOnClickRedirectUrl}</value>
+        </property>
+    </bean>
+
+    <bean name="adServerModelBuilder"
+          class="com.adserversoft.flexfuse.server.adserver.AdServerModelBuilder"
+          autowire="byName">
+    </bean>
+
+    <bean id="reporterModel"
+          class="com.adserversoft.flexfuse.server.adserver.ReporterModel"
+          autowire="byType"></bean>
+
+   
+
+</beans>

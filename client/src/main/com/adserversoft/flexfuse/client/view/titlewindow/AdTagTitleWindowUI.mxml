@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ads:AdTagTitleWindow
+        xmlns:ads="http://adserversoft.com"
+        xmlns:canvas="com.adserversoft.flexfuse.client.view.canvas.*"
+        xmlns:mx="http://www.adobe.com/2006/mxml"
+        layout="vertical"
+        creationPolicy="all"
+        showCloseButton="true"
+        title="Ad Tag"
+        height="400"
+        width="400"
+        >
+
+
+    <mx:VBox height="100%" width="100%">
+        <mx:TextArea id="adTagTA" width="100%" height="100%" editable="false"/>
+    </mx:VBox>
+    <mx:ControlBar>
+        <mx:Button id="getAdTagBtn" label="Copy to clipboard"/>
+        <mx:Spacer width="100%"/>
+        <mx:Button id="cancelBtn"
+                   label="{ResourceManager.getInstance().getString('ApplicationResource', 'TitleWindow.cancelBtn')}"/>
+    </mx:ControlBar>
+
+    <mx:Script><![CDATA[
+        import mx.resources.ResourceManager; ]]></mx:Script>
+</ads:AdTagTitleWindow>

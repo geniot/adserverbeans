@@ -1,0 +1,231 @@
+<ads:ReportResultsCanvas
+        xmlns:ads="http://adserversoft.com"
+        xmlns:mx="http://www.adobe.com/2006/mxml"
+        xmlns:viewstack="com.adserversoft.flexfuse.client.view.viewstack.*"
+        xmlns:canvas="com.adserversoft.flexfuse.client.view.canvas.*"
+        width="100%"
+        height="100%"
+        horizontalScrollPolicy="off"
+        >
+    <mx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        @namespace mx "library://ns.adobe.com/flex/halo";
+
+        .buttonBarButtonStyles {
+            skin: ClassReference("mx.skins.halo.ButtonSkin");
+        }
+    </mx:Style>
+
+    <mx:VBox
+            width="100%"
+            height="100%"
+            paddingLeft="3"
+            paddingRight="3"
+            paddingTop="3"
+            paddingBottom="0"
+            verticalGap="3"
+            >
+        <mx:VBox
+                width="100%"
+                height="100%"
+                paddingLeft="3"
+                paddingRight="3"
+                paddingTop="3"
+                paddingBottom="0"
+                verticalGap="3"
+                >
+            <mx:Label
+                    text="Generated Report"
+                    fontSize="14"
+                    />
+            <mx:ViewStack
+                    id="resultVS"
+                    width="100%"
+                    height="100%"
+                    >
+                <canvas:ReportViewTableCanvasUI
+                        id="reportViewTableCanvas"
+                        width="100%"
+                        height="100%"
+                        />
+                <mx:VBox
+                        id="reportViewChartVBox"
+                        width="100%"
+                        height="100%"
+                        paddingLeft="0"
+                        paddingRight="0"
+                        >
+                    <mx:ViewStack
+                            id="reportPanelViewStack"
+                            width="100%"
+                            height="100%"
+                            >
+                        <canvas:ReportViewChartLineCanvasUI
+                                id="reportViewChartLineCanvas"
+                                />
+                        <canvas:ReportViewChartBarCanvasUI
+                                id="reportViewChartBarCanvas"
+                                />
+                        <canvas:ReportViewChartPieCanvasUI
+                                id="reportViewChartPieCanvas"
+                                />
+                    </mx:ViewStack>
+                    <mx:ControlBar
+                            width="100%"
+                            paddingBottom="0"
+                            paddingLeft="0"
+                            paddingRight="0"
+                            paddingTop="0"
+                            verticalAlign="middle"
+                            horizontalGap="5"
+                            >
+                        <mx:HBox
+                                width="100%"
+                                paddingTop="3"
+                                paddingLeft="3"
+                                paddingRight="3"
+                                paddingBottom="3"
+                                horizontalGap="5"
+                                >
+                            <mx:Spacer
+                                    width="100%"
+                                    />
+                            <mx:ToggleButtonBar
+                                    id="chartTBB"
+                                    buttonWidth="40"
+                                    buttonHeight="40"
+                                    dataProvider="{chartVS}"
+                                    horizontalGap="3"
+                                    buttonStyleName="buttonBarButtonStyles"
+                                    firstButtonStyleName="buttonBarButtonStyles"
+                                    lastButtonStyleName="buttonBarButtonStyles"
+                                    />
+                        </mx:HBox>
+                    </mx:ControlBar>
+                </mx:VBox>
+            </mx:ViewStack>
+        </mx:VBox>
+        <mx:ControlBar
+                width="100%"
+                paddingBottom="0"
+                paddingLeft="2"
+                paddingRight="2"
+                paddingTop="0"
+                verticalAlign="middle"
+                >
+            <mx:HBox
+                    width="100%"
+                    paddingTop="3"
+                    paddingLeft="3"
+                    paddingRight="3"
+                    paddingBottom="3"
+                    horizontalGap="10"
+                    >
+                <mx:ToggleButtonBar
+                        id="tableAndChartTBB"
+                        buttonWidth="40"
+                        buttonHeight="40"
+                        dataProvider="{tableAndChartVS}"
+                        horizontalGap="3"
+                        buttonStyleName="buttonBarButtonStyles"
+                        firstButtonStyleName="buttonBarButtonStyles"
+                        lastButtonStyleName="buttonBarButtonStyles"
+                        />
+                <mx:ToggleButtonBar
+                        id="dateAndTypeTBB"   
+                        buttonWidth="40"
+                        buttonHeight="40"
+                        dataProvider="{dateAndTypeVS}"
+                        horizontalGap="3"
+                        buttonStyleName="buttonBarButtonStyles"
+                        firstButtonStyleName="buttonBarButtonStyles"
+                        lastButtonStyleName="buttonBarButtonStyles"
+                        />
+                <mx:HBox
+                        horizontalGap="3"
+                        >
+                    <mx:ToggleButtonBar
+                            id="viewsTBB"
+                            toggleOnClick="true"
+                            buttonWidth="40"
+                            buttonHeight="40"
+                            dataProvider="{viewsVS}"
+                            buttonStyleName="buttonBarButtonStyles"
+                            firstButtonStyleName="buttonBarButtonStyles"
+                            lastButtonStyleName="buttonBarButtonStyles"
+                            />
+                    <mx:ToggleButtonBar
+                            id="clicksTBB"
+                            toggleOnClick="true"
+                            buttonWidth="40"
+                            buttonHeight="40"
+                            dataProvider="{clicksVS}"
+                            buttonStyleName="buttonBarButtonStyles"
+                            firstButtonStyleName="buttonBarButtonStyles"
+                            lastButtonStyleName="buttonBarButtonStyles"
+                            />
+                </mx:HBox>
+                <mx:Spacer
+                        width="100%"
+                        />
+                <mx:Button
+                        id="exportToExcelB"
+                        width="40"
+                        height="40"
+                        paddingTop="3"
+                        paddingLeft="3"
+                        paddingRight="3"
+                        paddingBottom="3"
+                        toolTip="Export to excel"
+                        icon="@Embed(source='/images/excel.png')"
+                        />
+            </mx:HBox>
+        </mx:ControlBar>
+    </mx:VBox>
+    <mx:ViewStack id="tableAndChartVS">
+        <mx:VBox
+                toolTip="Show table"
+                icon="@Embed(source='/images/report_table.png')"
+                />
+        <mx:VBox
+                toolTip="Show chart"
+                icon="@Embed(source='/images/report_chart.png')"
+                />
+    </mx:ViewStack>
+    <mx:ViewStack id="dateAndTypeVS">
+        <mx:VBox
+                toolTip="Show chart by date"
+                icon="@Embed(source='/images/report_chart_date.png')"
+                />
+        <mx:VBox
+                toolTip="Show chart by type"
+                icon="@Embed(source='/images/report_chart_type.png')"
+                />
+    </mx:ViewStack>
+    <mx:ViewStack id="viewsVS">
+        <mx:VBox
+                toolTip="Show views"
+                icon="@Embed(source='/images/report_views.png')"
+                />
+    </mx:ViewStack>
+    <mx:ViewStack id="clicksVS">
+        <mx:VBox
+                toolTip="Show clicks"
+                icon="@Embed(source='/images/report_clicks.png')"
+                />
+    </mx:ViewStack>
+    <mx:ViewStack id="chartVS">
+        <mx:VBox
+                toolTip="Show line chart"
+                icon="@Embed(source='/images/report_chart.png')"
+                />
+        <mx:VBox
+                toolTip="Show bar chart"
+                icon="@Embed(source='/images/report_chart_bar.png')"
+                />
+        <mx:VBox
+                toolTip="Show pie chart"
+                icon="@Embed(source='/images/report_chart_pie.png')"
+                />
+    </mx:ViewStack>
+</ads:ReportResultsCanvas>

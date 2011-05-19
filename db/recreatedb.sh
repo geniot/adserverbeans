@@ -1,0 +1,1 @@
+mysql -ubanner -pbanner123 < recreate.sql

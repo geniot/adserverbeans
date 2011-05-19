@@ -1,0 +1,77 @@
+<ads:AdminSettingsCanvas xmlns:ads="http://adserversoft.com"
+                         xmlns:mx="http://www.adobe.com/2006/mxml"
+                         xmlns:component="com.adserversoft.flexfuse.client.view.component.*"
+                         width="100%"
+                         height="100%">
+
+    <component:NoTrimStringValidator id="passwordStringValidator"
+                                     source="{passwordTI}"
+                                     property="text"
+                                     minLength="5"
+                                     maxLength="20"/>
+
+    <mx:StringValidator id="firstNameStringValidator"
+                        source="{firstNameTI}"
+                        property="text"
+                        minLength="1"
+                        maxLength="100"/>
+
+    <mx:StringValidator id="emailStringValidator"
+                        source="{emailTI}"
+                        property="text"
+                        minLength="1"
+                        maxLength="100"/>
+
+    <mx:StringValidator id="lastNameStringValidator"
+                        source="{lastNameTI}"
+                        property="text"
+                        minLength="1"
+                        maxLength="100"/>
+
+    <mx:VBox width="100%" height="100%"
+             paddingBottom="10"
+             paddingLeft="10"
+             paddingRight="10"
+             paddingTop="10">
+
+        <mx:Form height="100%" width="100%">
+
+            <mx:FormItem id="emailLbl" label="Email:" required="true" width="100%">
+                <mx:TextInput maxChars="100"
+                              id="emailTI" dropShadowColor="0x000000" enabled="true" width="100%"/>
+            </mx:FormItem>
+
+
+            <mx:FormItem id="passwordLbl" label="Password:" required="true" width="100%">
+                <mx:TextInput maxChars="20"
+                              id="passwordTI" dropShadowColor="0x000000" displayAsPassword="true" width="100%"/>
+            </mx:FormItem>
+
+
+            <mx:FormItem id="firstNameLbl" label="First name:" required="true" width="100%">
+                <mx:TextInput maxChars="100"
+                              id="firstNameTI" dropShadowColor="0x000000" width="100%"/>
+            </mx:FormItem>
+
+            <mx:FormItem id="lastNameLbl" label="Last name:" required="true" width="100%">
+                <mx:TextInput maxChars="100"
+                              id="lastNameTI" dropShadowColor="0x000000" width="100%"/>
+
+            </mx:FormItem><mx:FormItem id="balance" label="Balance:" width="100%">
+                <mx:Label id="balanceLbl" width="100%" text=""/>
+            </mx:FormItem>
+
+            <mx:FormItem id="logoFileFI" label="Logo:">
+                <mx:HBox>
+                    <mx:TextInput maxChars="255" editable="false" id="logoFileTI" width="160"/>
+                    <mx:Button id="browseB" label="Browse"/>
+                </mx:HBox>
+                <mx:Image width="180" height="32" id="profileImage" data="image" visible="false"/>
+            </mx:FormItem>
+
+        </mx:Form>
+
+    </mx:VBox>
+
+
+</ads:AdminSettingsCanvas>

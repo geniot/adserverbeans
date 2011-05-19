@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="1" author="Vladimir Budanov">
+        <addColumn tableName="t_user">
+            <column name="smtp_subject" type="varchar(255)"/>
+            <column name="smtp_server" type="varchar(255)"/>
+            <column name="smtp_user" type="varchar(255)"/>
+            <column name="smtp_password" type="varchar(255)"/>
+            <column name="u_port" type="int"/>
+            <column name="support_email" type="varchar(255)"/>
+            <column name="from_email" type="varchar(255)"/>
+
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="2" author="Vladimir Budanov">
+        <update tableName="t_user">
+            <column name="smtp_subject" value="Message from openadstore.com"/>
+            <where>smtp_subject is NULL</where>
+        </update>
+        <update tableName="t_user">
+            <column name="smtp_server" value="smtp.gmail.com"/>
+            <where>smtp_server is NULL</where>
+        </update>
+        <update tableName="t_user">
+            <column name="smtp_user" value="openadstore.no.reply"/>
+            <where>smtp_user is NULL</where>
+        </update>
+        <update tableName="t_user">
+            <column name="smtp_password" value="stusukih"/>
+            <where>smtp_password is NULL</where>
+        </update>
+        <update tableName="t_user">
+            <column name="u_port" value="465"/>
+            <where>u_port is NULL</where>
+        </update>
+        <update tableName="t_user">
+            <column name="support_email" value="openadstore@gmail.com"/>
+            <where>support_email is NULL</where>
+        </update>
+        <update tableName="t_user">
+            <column name="from_email" value="openadstore.no.reply@gmail.com"/>
+            <where>from_email is NULL</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="3" author="Alexandr Rabetsky">
+        <update tableName="banner">
+            <column name="banner_content_type_id" value="1"/>
+            <where>banner_content_type_id is NULL</where>
+        </update>
+    </changeSet>
+
+</databaseChangeLog>

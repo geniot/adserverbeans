@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ads:LoginTitleWindow
+        xmlns:ads="http://adserversoft.com"
+        xmlns:mx="http://www.adobe.com/2006/mxml"
+        xmlns:component="com.adserversoft.flexfuse.client.view.component.*"
+        xmlns:canvas="com.adserversoft.flexfuse.client.view.canvas.*"
+        title="Login"
+        showCloseButton="true"
+        creationPolicy="all">
+    <canvas:GuestManagementCanvasUI id="guestManagementCanvas" mode="{ApplicationConstants.RELOGIN}"/>
+    <mx:ControlBar width="100%">
+        <mx:Button id="loginBtn"
+                   label="Login"/>
+        <mx:Spacer width="100%"/>
+        <mx:Button id="cancelBtn"
+                   label="Cancel"/>
+    </mx:ControlBar>
+    <mx:Script><![CDATA[
+        import com.adserversoft.flexfuse.client.model.ApplicationConstants;        ]]></mx:Script>
+</ads:LoginTitleWindow>

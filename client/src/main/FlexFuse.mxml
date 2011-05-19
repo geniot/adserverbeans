@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ads:FlexFuseApplication
+        xmlns:ads="http://adserversoft.com"
+        xmlns:mx="http://www.adobe.com/2006/mxml"
+        xmlns:canvas="com.adserversoft.flexfuse.client.view.canvas.*"
+        xmlns:viewstack="com.adserversoft.flexfuse.client.view.viewstack.*"
+        xmlns:customButton="com.adserversoft.flexfuse.client.view.component.button.*"
+        layout="vertical"
+        backgroundGradientColors="#003063"
+        usePreloader="true"
+        width="100%"
+        height="100%"
+        paddingTop="0" paddingBottom="0"
+        paddingLeft="0" paddingRight="0"
+        backgroundColor="#ffffff"
+        >
+
+    <mx:ApplicationControlBar
+            id="dockedBar"
+            dock="true"
+            paddingBottom="10"
+            paddingLeft="10"
+            paddingRight="10"
+            paddingTop="10"
+            width="100%"
+            verticalAlign="middle"
+            >
+        <mx:HBox id="hBox" horizontalGap="3" width="100%" height="{ApplicationConstants.APPLICATION_CONTROL_BAR_HEIGHT}">
+            <mx:Image id="logo" scaleContent="true" width="100%" height="{ApplicationConstants.APPLICATION_CONTROL_BAR_HEIGHT}"/>
+            <!--<mx:Spacer width="100%"/>-->
+            <mx:HBox id="buttonsHB" visible="false" horizontalGap="3">
+                <mx:Button id="trashB" width="40" height="{ApplicationConstants.APPLICATION_CONTROL_BAR_HEIGHT}"
+                           toolTip="Trash" icon="@Embed(source='images/trashcan_full.png')"/>
+                <mx:Button
+                        id="reportsBtn"
+                        width="40"
+                        height="{ApplicationConstants.APPLICATION_CONTROL_BAR_HEIGHT}"
+                        toolTip="Reports"
+                        icon="@Embed(source='/images/report_table.png')"
+                        />
+                <customButton:CustomSaveButton id="saveB" enabled="true" alpha="1" width="40" height="40"
+                                               toolTip="Save" icon="@Embed(source='/images/3floppy_unmount.png')"/>
+                <!--<mx:Button paddingBottom="3" paddingTop="3" paddingLeft="3" paddingRight="3" toolTip="Undo" icon="@Embed(source='images/restart-1.png')" />-->
+                <!--<mx:Button paddingBottom="3" paddingTop="3" paddingLeft="3" paddingRight="3" toolTip="Redo" icon="@Embed(source='images/refinish-1.png')" />-->
+                <mx:Button id="settingsBtn" width="40" height="{ApplicationConstants.APPLICATION_CONTROL_BAR_HEIGHT}"
+                           toolTip="Settings" icon="@Embed(source='/images/advancedsettings.png')"/>
+                <mx:Button id="helpBtn" width="40" height="{ApplicationConstants.APPLICATION_CONTROL_BAR_HEIGHT}"
+                           toolTip="Help" icon="@Embed(source='/images/info.png')"/>
+                <mx:Button id="logOutBtn" width="40" height="{ApplicationConstants.APPLICATION_CONTROL_BAR_HEIGHT}"
+                           toolTip="Exit" icon="@Embed(source='/images/exit.png')"/>
+            </mx:HBox>
+        </mx:HBox>
+    </mx:ApplicationControlBar>
+
+    <mx:VBox width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+        <viewstack:MainPanelViewStackUI id="mainPanelViewstack" height="100%" width="100%"/>
+        <mx:HBox width="100%">
+            <mx:Text id="copyRightsText" width="100%"
+                     textAlign="center"/>
+        </mx:HBox>
+    </mx:VBox>
+
+
+    <mx:Script><![CDATA[
+        import com.adserversoft.flexfuse.client.model.ApplicationConstants;        ]]></mx:Script>
+</ads:FlexFuseApplication>
+

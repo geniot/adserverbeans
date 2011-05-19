@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="1" author="Vladimir Budanov">
+
+        <addAutoIncrement tableName="ad_place" columnName="id" columnDataType="int"/>
+        <addAutoIncrement tableName="banner" columnName="id" columnDataType="int"/>
+        <addAutoIncrement tableName="t_user" columnName="id" columnDataType="int"/>
+        <addAutoIncrement tableName="ad_events_log" columnName="id" columnDataType="int"/>
+        <addAutoIncrement tableName="aggregate_reports" columnName="id" columnDataType="int"/>
+
+        <addUniqueConstraint tableName="t_user"
+                columnNames="first_name,last_name"
+                constraintName="t_user_names"/>
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ads:ReportsTitleWindow
+        xmlns:ads="http://adserversoft.com"
+        xmlns:mx="http://www.adobe.com/2006/mxml"
+        xmlns:canvas="com.adserversoft.flexfuse.client.view.canvas.*"
+        title="Reports"
+        showCloseButton="true"
+        width="{ApplicationConstants.TITLE_WIDTH}"
+        height="{ApplicationConstants.TITLE_HEIGHT}"
+        creationPolicy="all"
+        >
+    <mx:HDividedBox
+            width="100%"
+            height="100%"
+            >
+        <canvas:ReportSettingsCanvasUI
+                id="reportSettingsCanvas"
+                width="17%"
+                />
+        <canvas:ReportResultsCanvasUI
+                id="reportResultsCanvas"
+                width="83%"
+                />
+    </mx:HDividedBox>
+    <mx:ControlBar
+            width="100%"
+            >
+        <mx:Spacer
+                width="100%"
+                />
+        <mx:Button
+                id="cancelB"
+                label="Cancel"
+                />
+    </mx:ControlBar>
+    <mx:Script><![CDATA[
+        import com.adserversoft.flexfuse.client.model.ApplicationConstants;
+        ]]></mx:Script>
+</ads:ReportsTitleWindow>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="1" author="Vitaly Sazanovich">
+        <dropNotNullConstraint tableName="banner" columnDataType="longblob" columnName="banner_content"/>
+    </changeSet>
+    <changeSet id="2" author="Vitaly Sazanovich">
+        <addColumn tableName="banner">
+            <column name="asap" type="bit"/>
+            <column name="ongoing" type="bit"/>
+            <column name="start_date" type="datetime"/>
+            <column name="end_date" type="datetime"/>
+        </addColumn>
+    </changeSet>
+
+
+</databaseChangeLog>
+

@@ -1,0 +1,39 @@
+<ads:BannerTargetingReferrerUrlCanvas xmlns:ads="http://adserversoft.com"
+                                  xmlns:mx="http://www.adobe.com/2006/mxml"
+                                  xmlns:component="com.adserversoft.flexfuse.client.view.component.*"
+                                  xmlns:canvas="com.adserversoft.flexfuse.client.view.canvas.*"
+                                  width="100%"
+                                  height="100%"
+                                  creationPolicy="all">
+    <mx:HBox width="100%" creationPolicy="all" height="100%">
+        <mx:Spacer width="5"/>
+        <mx:VBox width="100%" creationPolicy="all" height="100%">
+
+            <mx:FormItem id="patternLbl" label="Referrer pattern:" width="100%">
+                <mx:HBox>
+                    <mx:TextInput maxChars="100"
+                                  id="patternTI" dropShadowColor="0x000000" enabled="true" width="60%"/>
+                    <mx:Button label="Add" id="addPtrnBtn"/>
+                    <mx:Label htmlText="&lt;b&gt;Tip:&lt;/b&gt; use &lt;b&gt;*&lt;/b&gt; for any sequence of symbols and &lt;b&gt;_&lt;/b&gt; for any single symbol" />
+                </mx:HBox>
+            </mx:FormItem>
+
+            <mx:DataGrid showHeaders="true" id="referrerUrlDataGrid" height="100%" width="100%" variableRowHeight="true" doubleClickEnabled="true"
+                         dataProvider="{referrerUrlDataProvider}">
+                <mx:columns>
+                    <mx:DataGridColumn headerWordWrap="true" headerText="Patterns" id="dateColumn"
+                                       dataField="referrerPattern"
+                                       sortable="false"
+                                       wordWrap="true" />
+                    <mx:DataGridColumn headerWordWrap="true" headerText="" id="eventTypeColumn"
+                                       itemRenderer="com.adserversoft.flexfuse.client.view.component.linkbutton.DeletePatternLinkButton"
+                                       sortable="false"
+                                       wordWrap="true" width="30"/>
+
+                </mx:columns>
+            </mx:DataGrid>
+            <mx:Spacer width="5"/>
+        </mx:VBox>
+        <mx:Spacer width="5"/>
+    </mx:HBox>
+</ads:BannerTargetingReferrerUrlCanvas>

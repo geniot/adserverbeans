@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<ads:EmailReminderTitleWindow
+    xmlns:ads="http://adserversoft.com"
+        xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:canvas="com.adserversoft.flexfuse.client.view.component.*"
+        showCloseButton="true"
+        layout="vertical"
+        title="Email Reminder">
+
+    <mx:StringValidator id="firstNameStringValidator" source="{firstNameTI}" property="text"/>
+    <mx:StringValidator id="lastNameStringValidator" source="{lastNameTI}" property="text"/>
+
+    <mx:Form width="100%" height="100%">
+        <mx:FormItem>
+            <mx:Label text="Enter your first and  last name."/>
+        </mx:FormItem>
+        <mx:FormItem label="First name:" required="true" width="100%">
+            <mx:TextInput id="firstNameTI" maxChars="255" width="100%"/>
+        </mx:FormItem>
+        <mx:FormItem label="Last name:" required="true" width="100%">
+            <mx:TextInput id="lastNameTI" maxChars="255" width="100%"/>
+        </mx:FormItem>
+    </mx:Form>
+
+    <mx:ControlBar>
+        <mx:Button id="remindEmailBtn" label="Remind"/>
+        <mx:Spacer width="100%"/>
+        <mx:Button id="cancelBtn" label="Cancel"/>
+    </mx:ControlBar>
+    
+</ads:EmailReminderTitleWindow>

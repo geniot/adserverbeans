@@ -1,0 +1,221 @@
+<ads:BannerInfoCanvas xmlns:ads="http://adserversoft.com"
+                      xmlns:component="com.adserversoft.flexfuse.client.view.component.*"
+                      xmlns:mx="http://www.adobe.com/2006/mxml"
+                      width="100%"
+                      height="100%">
+
+    <mx:StringValidator id="bannerNameStringValidator"
+                        source="{bannerNameTI}"
+                        property="text"
+                        minLength="1"
+                        maxLength="200"/>
+
+    <mx:StringValidator id="targetURLStringValidator"
+                        source="{targetURLTI}"
+                        property="text"
+                        minLength="4"
+                        maxLength="200"/>
+
+    <mx:StringValidator id="bannerFileStringValidator"
+                        source="{bannerFileTI}"
+                        minLength="1"
+                        maxLength="200"
+                        property="text"
+                        requiredFieldError="Banner file is required."
+                        tooLongError="Name of banner file is longer than the maximum allowed length of 200."
+            />
+
+
+    <mx:VBox width="100%">
+        <mx:Form x="0" y="0" height="100%" width="100%" verticalScrollPolicy="auto">
+            <mx:FormItem id="bannerNameFI" label="Banner name:"
+                         required="true" width="100%">
+                <mx:TextInput id="bannerNameTI" width="100%" maxChars="{ApplicationConstants.MAX_CHARS}"/>
+            </mx:FormItem>
+
+            <mx:FormItem id="targetURLFI" label="Target URL:" width="100%" required="true">
+                <mx:TextInput id="targetURLTI" width="100%" maxChars="255" restrict="0-9a-zA-Z,$\-_.+!*'():/[]?&amp;="/>
+            </mx:FormItem>
+
+            <mx:FormItem id="displayFI" label="Display:" required="true" width="100%">
+                <mx:ComboBox
+                        id="displayCB"
+                        width="100%"
+                        labelField="display"
+                        dataProvider="{ApplicationConstants.DISPLAY}"
+                        rowCount="{ApplicationConstants.DISPLAY.length}"
+                        />
+            </mx:FormItem>
+
+            <mx:FormItem id="adFormatFI" label="Ad format:" required="true" width="100%">
+                <component:FindSelectedItemComboBox labelField="shortAdFormatName" id="adFormat" width="100%"/>
+            </mx:FormItem>
+
+            <mx:FormItem id="bannerFileFI"
+                         label="File:"
+                         required="true" width="100%">
+                <mx:HBox width="100%">
+                    <mx:TextInput maxChars="255" editable="false" id="bannerFileTI" width="100%"/>
+                    <mx:Button id="browseBtn"
+                               label="Browse"/>
+                </mx:HBox>
+            </mx:FormItem>
+
+            <mx:FormItem id="bannerFilesFI"
+                         width="100%"
+                         label="Files:"
+                         required="true"
+                    >
+                <mx:DataGrid id="bannerFilesDG"
+                             height="100%"
+                             width="100%"
+                             showHeaders="true"
+                             variableRowHeight="true"
+                             doubleClickEnabled="true"
+                             dataProvider="{bannerFilesDP}"
+                             horizontalGridLines="true"
+                             horizontalGridLineColor="0x666666"
+                             rowCount="5"
+                             useRollOver="false"
+                        >
+                    <mx:columns>
+                        <mx:DataGridColumn id="rowNumberDGC"
+                                           width="30"
+                                           headerText="No."
+                                           labelFunction="labelFunctionRowNumber"
+                                           sortable="false"
+                                           headerWordWrap="true"
+                                           wordWrap="true"
+                                           textAlign="center"
+                                />
+
+                        <mx:DataGridColumn id="adFormatIdDGC"
+                                           headerText="Ad format"
+                                           dataField="adFormatId"
+                                           sortable="false"
+                                           headerWordWrap="true"
+                                           wordWrap="true"
+                                >
+                            <mx:itemRenderer>
+                                <mx:Component>
+                                    <component:FindSelectedItemComboBox labelField="adFormatName" width="100%" dataProvider="{ApplicationConstants.sortedAdFormatsCollection}"
+                                                                        paddingBottom="-1" paddingLeft="2" paddingRight="1">
+                                        <mx:Script><![CDATA[
+                                            import com.adserversoft.flexfuse.client.model.ApplicationConstants;
+                                            ]]></mx:Script>
+                                    </component:FindSelectedItemComboBox>
+                                </mx:Component>
+                            </mx:itemRenderer>
+                        </mx:DataGridColumn>
+                        <mx:DataGridColumn id="filenameDGC"
+                                           headerText="Name"
+                                           dataField="filename"
+                                           sortable="false"
+                                           headerWordWrap="true"
+                                           wordWrap="true"
+                                />
+                        <mx:DataGridColumn id="fileSizeDGC"
+                                           width="70"
+                                           headerText="Size"
+                                           dataField="fileSizeString"
+                                           sortable="false"
+                                           headerWordWrap="true"
+                                           wordWrap="true"
+                                />
+                        <mx:DataGridColumn id="deleteBtnDGC"
+                                           width="36"
+                                           headerText=""
+                                           sortable="false"
+                                >
+                            <mx:itemRenderer>
+                                <mx:Component>
+                                    <mx:HBox width="36" horizontalGap="0" horizontalScrollPolicy="off">
+                                        <mx:LinkButton
+                                                id="editBtn"
+                                                toolTip="Edit"
+                                                width="18"
+                                                icon="@Embed('/images/edit.gif')"
+                                                paddingTop="6"
+                                                paddingLeft="1"
+                                                paddingRight="1"
+                                                click="outerDocument.onEditFile(event)"
+                                                />
+                                        <mx:LinkButton
+                                                id="deleteBtn"
+                                                width="18"
+                                                toolTip="Delete"
+                                                icon="@Embed('/images/del.gif')"
+                                                paddingTop="5"
+                                                paddingLeft="2"
+                                                click="outerDocument.onDeleteFile(event)"
+                                                />
+                                    </mx:HBox>
+                                </mx:Component>
+                            </mx:itemRenderer>
+                        </mx:DataGridColumn>
+                    </mx:columns>
+                </mx:DataGrid>
+            </mx:FormItem>
+
+            <mx:HBox
+                    width="100%"
+                    horizontalAlign="right"
+                    >
+                <mx:Button
+                        id="addFileB"
+                        width="25"
+                        height="25"
+                        toolTip="Add new file"
+                        icon="@Embed('/images/add.png')"
+                        paddingTop="0"
+                        paddingLeft="0"
+                        paddingRight="0"
+                        paddingBottom="0"
+                        />
+            </mx:HBox>
+
+            <mx:FormItem id="startDateFI" label="Start date:" width="100%">
+                <mx:HBox>
+                    <mx:DateField id="startDateDF" enabled="true"/>
+                </mx:HBox>
+            </mx:FormItem>
+
+            <mx:FormItem id="endDateFI" label="End date:" width="100%">
+                <mx:HBox>
+                    <mx:DateField id="endDateDF" enabled="false"/>
+                    <mx:CheckBox id="ongoingChB" label="ongoing"/>
+                </mx:HBox>
+            </mx:FormItem>
+
+            <mx:FormItem id="oneOnPageFI" width="100%">
+                <mx:HBox>
+                    <mx:CheckBox id="oneOnPageChB" label="Don't show the banner again on the same page"/>
+                </mx:HBox>
+            </mx:FormItem>
+
+            <mx:FormItem id="frameTargetingFI" label="Target window:" width="100%">
+                <mx:HBox>
+                    <mx:ComboBox id="frameTargetingChB" labelField="test" dataProvider="{ApplicationConstants.BANNER_FRAME_TARGETING}" />
+                </mx:HBox>
+            </mx:FormItem>
+
+            <mx:FormItem width="100%">
+                <mx:CheckBox id="partyAdTagChB" label="3rd party ad tag"/>
+            </mx:FormItem>
+
+
+            <mx:FormItem id="partyAdTagFI" width="100%" height="0" label="Ad tag:" required="false" visible="false">
+                <mx:TextArea id="partyAdTagTA" width="100%" height="100%"/>
+            </mx:FormItem>
+        </mx:Form>
+    </mx:VBox>
+
+    <mx:Script><![CDATA[
+        import com.adserversoft.flexfuse.client.model.ApplicationConstants;
+
+        private function labelFunctionRowNumber(iRow:Object, iCol:int):String {
+            var iIndex:int = bannerFilesDP.getItemIndex(iRow) + 1;
+            return String(iIndex);
+        }
+        ]]></mx:Script>
+</ads:BannerInfoCanvas>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="1" author="Vladimir Budanov">
+        <createTable tableName="ip_patterns">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ip_pattern" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="banner_uid" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addAutoIncrement tableName="ip_patterns" columnName="id" columnDataType="int"/>
+
+        <addForeignKeyConstraint constraintName="fk_ip_pattern_banner_uid"
+                                 baseTableName="ip_patterns" baseColumnNames="banner_uid"
+                                 referencedTableName="banner" referencedColumnNames="uid"/>
+
+    </changeSet>
+</databaseChangeLog>

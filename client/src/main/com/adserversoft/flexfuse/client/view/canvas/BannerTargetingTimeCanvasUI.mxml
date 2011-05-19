@@ -1,0 +1,24 @@
+<ads:BannerTargetingTimeCanvas xmlns:ads="http://adserversoft.com"
+                               xmlns:mx="http://www.adobe.com/2006/mxml"
+                               xmlns:component="com.adserversoft.flexfuse.client.view.component.*"
+                               xmlns:canvas="com.adserversoft.flexfuse.client.view.canvas.*"
+                               width="100%"
+                               height="100%"
+                               creationPolicy="all">
+    <mx:HBox width="100%" creationPolicy="all">
+        <mx:Spacer width="5"/>
+        <mx:VBox width="100%" creationPolicy="all">
+            <mx:RadioButton id="allRB" groupName="week" label="All days of the week" selected="true"/>
+            <mx:RadioButton id="someRB" groupName="week" label="Selected days of the week"/>
+            <mx:VBox width="100%" id="weekVB" paddingLeft="22">
+                <mx:CheckBox id="cb0" label="Sunday"/>
+                <mx:CheckBox id="cb1" label="Monday"/>
+                <mx:CheckBox id="cb2" label="Tuesday"/>
+                <mx:CheckBox id="cb3" label="Wednesday"/>
+                <mx:CheckBox id="cb4" label="Thursday"/>
+                <mx:CheckBox id="cb5" label="Friday"/>
+                <mx:CheckBox id="cb6" label="Saturday"/>
+            </mx:VBox>
+        </mx:VBox>
+    </mx:HBox>
+</ads:BannerTargetingTimeCanvas>

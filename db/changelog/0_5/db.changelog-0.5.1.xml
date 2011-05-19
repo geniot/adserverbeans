@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="1" author="Dmitrii Lemeshevsky">
+
+        <addColumn tableName="banner">
+            <column name="browser_bits" type="varchar(8)"/>
+        </addColumn>
+
+        <update tableName="banner">
+            <column name="browser_bits" value="11111111"/>
+            <where>browser_bits is NULL</where>
+        </update>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="1" author="Dmitrii Lemeshevsky">
+
+        <createIndex tableName="banner" indexName="banner_ad_place_uid_index">
+            <column name="ad_place_uid"/>
+        </createIndex>
+
+        <createIndex tableName="banner" indexName="banner_banner_state_index">
+            <column name="banner_state"/>
+        </createIndex>
+
+        <!--<createIndex tableName="" indexName="">-->
+            <!--<column name=""/>-->
+        <!--</createIndex>-->
+        
+    </changeSet>
+</databaseChangeLog>
+
+
+
+
+

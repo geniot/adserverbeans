@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="1" author="Vitaly Sazanovich">
+        <createTable tableName="uniques">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="uid" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="Vitaly Sazanovich">
+        <addColumn tableName="ad_events_log">
+            <column name="unique_id" type="int"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="3" author="Vitaly Sazanovich">
+        <addForeignKeyConstraint constraintName="fk_ad_events_log_unique_id"
+                                 baseTableName="ad_events_log" baseColumnNames="unique_id"
+                                 referencedTableName="uniques" referencedColumnNames="id"/>
+
+        <addAutoIncrement tableName="uniques" columnName="id" columnDataType="int"/>
+    </changeSet>
+
+    <changeSet id="4" author="Vitaly Sazanovich">
+        <renameColumn tableName="banner" oldColumnName="displayOrder" newColumnName="display_order" columnDataType="int" />
+        <renameColumn tableName="ad_place" oldColumnName="displayOrder" newColumnName="display_order" columnDataType="int"/>
+    </changeSet>
+
+    <changeSet id="5" author="Vitaly Sazanovich">
+        <addColumn tableName="ad_events_log">
+            <column name="time_stamp_long" type="long"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

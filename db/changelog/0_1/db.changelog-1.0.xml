@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+
+    <changeSet id="1" author="Vladimir Budanov">
+
+        <createTable tableName="ad_place">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="uid" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="ad_place_name" type="varchar(255)">
+                <constraints unique="false" nullable="false"/>
+            </column>
+            <column name="ad_format_id" type="int"/>
+            <column name="ad_place_state" type="int"/>
+        </createTable>
+
+        <createTable tableName="banner">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="uid" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+
+            <column name="banner_content_type_id" type="int"/>
+
+            <column name="parent_uid" type="varchar(255)"/>
+
+            <column name="banner_name" type="varchar(255)"/>
+
+            <column name="ad_place_uid" type="varchar(255)"/>
+
+            <column name="banner_priority" type="int"/>
+
+            <column name="target_url" type="varchar(255)"/>
+
+            <column name="banner_content" type="longblob">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="file_size" type="int"/>
+            <column name="ad_format_id" type="int"/>
+            <column name="banner_state" type="int"/>
+            <column name="daily_views_limit" type="int"/>
+
+            <column name="sun" type="bit"/>
+            <column name="mon" type="bit"/>
+            <column name="tue" type="bit"/>
+            <column name="wed" type="bit"/>
+            <column name="thu" type="bit"/>
+            <column name="fri" type="bit"/>
+            <column name="sat" type="bit"/>
+        </createTable>
+
+        <createTable tableName="t_user">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="u_password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pic" type="longblob"/>
+            <column name="verified" type="bit"/>
+            <column name="reset_code" type="varchar(255)">
+                <constraints unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="ad_events_log">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="banner_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ad_place_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_stamp_id" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="aggregate_reports">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="entity_key" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="ts_year" type="int"/>
+            <column name="ts_month" type="int"/>
+            <column name="ts_date" type="int"/>
+            <column name="ts_hour" type="int"/>
+            <column name="views" type="int"/>
+            <column name="clicks" type="int"/>
+        </createTable>
+
+
+    </changeSet>
+</databaseChangeLog>

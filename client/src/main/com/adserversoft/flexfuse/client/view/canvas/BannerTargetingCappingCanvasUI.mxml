@@ -1,0 +1,34 @@
+<ads:BannerTargetingCappingCanvas xmlns:ads="http://adserversoft.com"
+                                  xmlns:mx="http://www.adobe.com/2006/mxml"
+                                  xmlns:component="com.adserversoft.flexfuse.client.view.component.*"
+                                  xmlns:canvas="com.adserversoft.flexfuse.client.view.canvas.*"
+                                  width="100%"
+                                  height="100%">
+
+    <mx:Form x="0" y="0" height="100%" width="100%" verticalScrollPolicy="auto">
+        <mx:FormItem id="maxViewsFI" label="Maximum number of views for the whole display period:"
+                     required="false" width="100%">
+            <mx:HBox width="100%" horizontalGap="3">
+                <mx:TextInput id="mnofTI" width="100" maxChars="9" restrict="0-9"/>
+                <mx:Button id="infinityMaxViewsBtn" width="20" height="20"
+                           toolTip="Set" icon="{iconInfinity}"/>
+            </mx:HBox>
+        </mx:FormItem>
+        <mx:FormItem id="maxViewsPerDayFI" label="Daily views limit:"
+                     required="false" width="100%">
+            <mx:HBox width="100%" horizontalGap="3">
+                <mx:TextInput id="dvlfTI" width="100" maxChars="9" restrict="0-9"/>
+                <mx:Button id="infinityMaxViewsPerDayBtn" width="20" height="20"
+                           toolTip="Set" icon="{iconInfinity}"/>
+            </mx:HBox>
+        </mx:FormItem>
+        <mx:Script>
+            <![CDATA[
+                [Embed(source="/images/infinity.gif")]
+                [Bindable]
+                public var iconInfinity:Class;
+            ]]>
+        </mx:Script>
+    </mx:Form>
+
+</ads:BannerTargetingCappingCanvas>

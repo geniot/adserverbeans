@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:flex="http://www.springframework.org/schema/flex"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/flex
+		http://www.springframework.org/schema/flex/spring-flex-1.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security-2.0.4.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.adserversoft"/>
+
+    <flex:message-broker>
+        <flex:message-service
+                default-channels="my-streaming-amf,my-longpolling-amf,my-polling-amf"/>
+        <flex:secured/>
+    </flex:message-broker>
+
+    <flex:remoting-destination ref="settings"/>
+    <flex:remoting-destination ref="user"/>
+    <flex:remoting-destination ref="state"/>
+    <flex:remoting-destination ref="report"/>
+    <flex:remoting-destination ref="banner"/>
+
+    <import resource="classpath:context/applicationContext-ui.xml"/>
+
+</beans>

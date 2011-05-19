@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="1" author="Alexander Rabetsky">
+
+        <addColumn tableName="banner">
+            <column name="label" type="varchar(255)"/>
+        </addColumn>
+
+        <update tableName="banner">
+            <column name="label" value="Advertiser"/>
+            <where>label is NULL</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="2" author="Alexander Rabetsky">
+
+        <addColumn tableName="ad_place">
+            <column name="label" type="varchar(255)"/>
+        </addColumn>
+
+        <update tableName="ad_place">
+            <column name="label" value="Site"/>
+            <where>label is NULL</where>
+        </update>
+    </changeSet>
+</databaseChangeLog>

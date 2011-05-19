@@ -1,0 +1,90 @@
+<ads:BannerTargetingLanguageCanvas xmlns:ads="http://adserversoft.com"
+                                  xmlns:mx="http://www.adobe.com/2006/mxml"
+                                  width="100%"
+                                  height="100%"
+                                  creationPolicy="all">
+    <mx:HBox
+            width="100%"
+            height="100%"
+            paddingBottom="5"
+            >
+        <mx:Spacer width="5"/>
+        <mx:VBox
+                width="100%"
+                height="100%"
+                >
+            <mx:RadioButton
+                    id="allLanguagesRB"
+                    groupName="languages"
+                    label="All languages"
+                    selected="true"
+                    />
+            <mx:RadioButton
+                    id="someLanguageRB"
+                    groupName="languages"
+                    label="Selected languages"
+                    />
+            <mx:HBox
+                    id="languagesHB"
+                    width="100%"
+                    height="100%"
+                    paddingLeft="22"
+                    paddingBottom="5"
+                    paddingRight="5"
+                    >
+                <mx:VBox width="100%"
+                    height="100%">
+                    <mx:Label text="Available languages:"/>
+                    <mx:List
+                            id="allLanguagesList"
+                            width="100%"
+                            height="100%"
+                            labelField="languageLabel"
+                            verticalScrollPolicy="on"
+                            />
+                </mx:VBox>
+                <mx:VBox
+                        horizontalAlign="center"
+                        verticalAlign="bottom"
+                        >
+                    <mx:Label text=" "/>
+                    <mx:Button
+                            id="addOneBtn"
+                            width="50"
+                            height="20"
+                            label=">"
+                            />
+                    <mx:Button
+                            id="addAllBtn"
+                            width="50"
+                            height="20"
+                            label=">>"
+                            />
+                    <mx:Button
+                            id="removeOneBtn"
+                            width="50"
+                            height="20"
+                            label="&lt;"
+                            />
+                    <mx:Button
+                            id="removeAllButton"
+                            width="50"
+                            height="20"
+                            label="&lt;&lt;"
+                            />
+                </mx:VBox>
+                <mx:VBox width="100%"
+                    height="100%">
+                    <mx:Label text="Selected languages:"/>
+                    <mx:List
+                            id="someLanguagesList"
+                            width="100%"
+                            height="100%"
+                            labelField="languageLabel"
+                            verticalScrollPolicy="on"
+                            />
+                </mx:VBox>
+            </mx:HBox>
+        </mx:VBox>
+    </mx:HBox>
+</ads:BannerTargetingLanguageCanvas>

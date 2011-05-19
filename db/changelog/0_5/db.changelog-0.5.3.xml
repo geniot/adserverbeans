@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="1" author="Alexander Rabetsky">
+
+        <addColumn tableName="banner">
+            <column name="language_bits" type="varchar(122)"/>
+        </addColumn>
+
+        <update tableName="banner">
+            <column name="language_bits" value="11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"/>
+            <where>language_bits is NULL</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="2" author="Alexander Rabetsky">
+        <createTable tableName="t_language">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="language_abbr_small" type="varchar(5)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="language_name" type="varchar(30)">
+                <constraints unique="false" nullable="false"/>
+            </column>
+        </createTable>
+
+        <addAutoIncrement tableName="t_language" columnName="id" columnDataType="int"/>
+    </changeSet>
+</databaseChangeLog>

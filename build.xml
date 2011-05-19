@@ -1,0 +1,414 @@
+<!--
+Author: Vitaly Sazanovich
+Email: Vitaly.Sazanovich@gmail.com
+-->
+
+<project name="myads" default="war" basedir=".">
+
+
+    <property file="build.properties"/>
+
+
+    <path id="lib.class.path">
+        <fileset dir="${lib.dir.required}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${lib.dir.optional}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <!--<fileset dir="${lib.dir.core}">-->
+        <!--<include name="**/*"/>-->
+        <!--</fileset>-->
+    </path>
+
+    <path id="test.class.path">
+        <fileset dir="${lib.dir.required}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${lib.dir.optional}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${lib.dir.core}">
+            <include name="**/*"/>
+        </fileset>
+    </path>
+
+    <path id="flex.lib.class.path">
+        <fileset dir="${FLEX_HOME}/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+
+    <taskdef resource="flexTasks.tasks" classpath="${lib.dir.optional}/flexTasks.jar"/>
+    <!-- <taskdef name="SSHExec" classname="org.apache.tools.ant.taskdefs.optional.ssh.SSHExec"
+   classpath="${lib.dir.optional}/jsch-0.1.43.jar"/> -->
+    <taskdef name="if" classname="ise.antelope.tasks.IfTask" classpathref="lib.class.path"/>
+
+    <!-- Tasks -->
+
+
+    <target name="flex.clean" description="Cleans up build and dist directories">
+        <delete quiet="true">
+            <fileset dir="${flex.dir.web}">
+                <include name="**/FlexFuse.swf"/>
+                <include name="**/flex-config.xml"/>
+                <include name="**/mxml-manifest.xml"/>
+            </fileset>
+        </delete>
+    </target>
+
+    <target name="clean" description="Cleans up build and dist directories">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.dir.tests}"/>
+        <mkdir dir="${lib.dir.core}"/>
+        <delete dir="${build.dir}" quiet="true"/>
+        <mkdir dir="${build.dir}"/>
+        <delete quiet="true">
+            <fileset dir="${flex.dir.web}">
+                <include name="**/*.swf"/>
+            </fileset>
+        </delete>
+        <available file="**/${app.name}.jar" property="jarExists"/>
+        <delete quiet="true">
+            <fileset dir="${lib.dir.core}">
+                <include name="**/*.jar"/>
+            </fileset>
+            <fileset dir=".">
+                <include name="${app.name}.war"/>
+            </fileset>
+        </delete>
+    </target>
+
+
+    <target name="init" description="Initialize the build">
+        <tstamp>
+            <format property="subversion" pattern="yyyy-MM-dd hh:mm:ss"/>
+        </tstamp>
+        <echo message="Build ${app.name}-${version} (${subversion})"/>
+    </target>
+
+
+    <target name="compile" depends="clean" description="Compile the Java source code">
+        <javac
+                srcdir="${src.dir.main}"
+                destdir="${build.dir}"
+                classpathref="lib.class.path"
+                debug="on"
+                optimize="on"
+                nowarn="on"
+                includes="**/*.*"
+                memorymaximumsize="640M"
+                deprecation="false"
+                source="1.6"
+                target="1.6">
+        </javac>
+
+        <delete>
+            <fileset dir="${build.dir}">
+                <include name="**/*.*"/>
+                <exclude name="**/*.java"/>
+                <exclude name="**/*.class"/>
+            </fileset>
+        </delete>
+
+        <copy todir="${build.dir}" overwrite="true" flatten="false">
+            <fileset dir="${src.dir.main}">
+                <include name="**/*.*"/>
+                <exclude name="**/*.java"/>
+                <exclude name="**/applicationContext-inst-*.xml"/>
+                <exclude name="**/applicationContext-service.xml"/>
+            </fileset>
+        </copy>
+
+        <java classname="com.adserversoft.flexfuse.server.service.ContextGenerator">
+            <classpath refid="lib.class.path"/>
+            <classpath location="${build.dir}"/>
+        </java>
+
+        <copy todir="${build.dir}" overwrite="true" flatten="false">
+            <fileset dir="${src.dir.main}">
+                <include name="**/*.*"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.test" description="Compile the Java tests' source code">
+        <javac
+                srcdir="${src.dir.test}"
+                destdir="${build.dir.tests}"
+                classpathref="test.class.path"
+                debug="on"
+                optimize="on"
+                nowarn="on"
+                includes="**/*.*"
+                memorymaximumsize="640M"
+                deprecation="false"
+                source="1.6"
+                target="1.6">
+        </javac>
+
+        <delete>
+            <fileset dir="${build.dir.tests}">
+                <include name="**/*.*"/>
+                <exclude name="**/*.java"/>
+                <exclude name="**/*.class"/>
+            </fileset>
+        </delete>
+
+        <copy todir="${build.dir.tests}" overwrite="true" flatten="false">
+            <fileset dir="${src.dir.test}">
+                <include name="**/*.*"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+
+        <copy todir="${build.dir.tests}" overwrite="true" flatten="false">
+            <fileset dir="${src.dir.test}">
+                <include name="**/*.*"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+
+
+    <target name="copy-resources">
+        <copy todir="${build.dir}" overwrite="true" flatten="false">
+            <fileset dir="${src.dir.main}">
+                <include name="**/*.*"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <mkdir dir="${build.dir}"/>
+        <copy todir="${build.dir}" overwrite="true" flatten="false">
+            <fileset dir="${src.dir.db}">
+                <include name="**/*.*"/>
+            </fileset>
+        </copy>
+    </target>
+
+
+    <target name="jar" depends="clean,init,compile,copy-resources">
+        <!--creating jar file-->
+        <jar basedir="${build.dir}"
+             destfile="${lib.dir.core}/${app.name}.jar"/>
+    </target>
+
+    <target name="update.version">
+        <javac
+                srcdir="${src.dir.main}"
+                destdir="${build.dir}"
+                classpathref="lib.class.path"
+                debug="on"
+                optimize="on"
+                nowarn="on"
+                includes="com/adserversoft/flexfuse/server/service/VersionUpdater.java"
+                memorymaximumsize="640M"
+                deprecation="false"
+                source="1.6"
+                target="1.6">
+        </javac>
+        <java failonerror="true" classname="com.adserversoft.flexfuse.server.service.VersionUpdater">
+            <classpath refid="lib.class.path"/>
+            <classpath location="${build.dir}"/>
+        </java>
+    </target>
+
+
+    <target name="flex.swf" depends="flex.clean">
+        <java
+                jar="${FLEX_HOME}/lib/mxmlc.jar"
+                fork="true"
+                maxmemory="512m"
+                failonerror="true">
+            <arg value="+flexlib=${FLEX_HOME}/frameworks"/>
+            <arg value="-load-config=${FLEX_HOME}/frameworks/flex-config.xml"/>
+            <arg value="-output=${flex.dir.web}/FlexFuse.swf"/>
+
+            <arg value="-compiler.include-libraries"/>
+            <arg value="lib/flex/SeleniumFlexAPI.swc"/>
+
+            <arg value="-compiler.context-root"/>
+            <arg value="${context.root}"/>
+
+            <arg value="-compiler.services"/>
+            <arg value="${flex.dir.web}/WEB-INF/flex/services-config.xml"/>
+
+            <arg value="-locale=en_US"/>
+
+            <arg value="-compiler.namespaces.namespace"/>
+            <arg value="http://adserversoft.com"/>
+            <arg value="${flex.src.dir}/mxml-manifest.xml"/>
+
+            <arg value="-source-path"/>
+            <arg value="${flex.src.dir}"/>
+            <!--<arg value="${flex.src.dir}/locale/en_US"/>-->
+
+            <arg value="-library-path+=${lib.dir.flex}"/>
+            <arg value="${flex.src.dir}/FlexFuse.mxml"/>
+        </java>
+    </target>
+
+    <target name="flex.swf.prod" depends="flex.clean">
+        <java
+                jar="${FLEX_HOME}/lib/mxmlc.jar"
+                fork="true"
+                maxmemory="512m"
+                failonerror="true">
+            <arg value="+flexlib=${FLEX_HOME}/frameworks"/>
+            <arg value="-load-config=${FLEX_HOME}/frameworks/flex-config.xml"/>
+            <arg value="-output=${flex.dir.web}/FlexFuse.swf"/>
+
+            <arg value="-compiler.context-root"/>
+            <arg value="${context.root}"/>
+
+            <arg value="-compiler.services"/>
+            <arg value="${flex.dir.web}/WEB-INF/flex/services-config.xml"/>
+
+            <arg value="-locale=en_US"/>
+
+            <arg value="-compiler.namespaces.namespace"/>
+            <arg value="http://adserversoft.com"/>
+            <arg value="${flex.src.dir}/mxml-manifest.xml"/>
+
+            <arg value="-source-path"/>
+            <arg value="${flex.src.dir}"/>
+
+            <arg value="-library-path+=${lib.dir.flex}"/>
+            <arg value="${flex.src.dir}/FlexFuse.mxml"/>
+        </java>
+    </target>
+
+    <target name="flex.resources">
+        <java
+                jar="${FLEX_HOME}/lib/mxmlc.jar"
+                fork="true"
+                maxmemory="512m"
+                failonerror="true">
+            <arg value="+flexlib=${FLEX_HOME}/frameworks"/>
+            <arg value="-load-config=${FLEX_HOME}/frameworks/flex-config.xml"/>
+            <arg value="-include-resource-bundles=ApplicationResource"/>
+            <arg value="-output=${flex.dir.web}/ResourceModule_en_US.swf"/>
+            <!--<arg value="-source-path"/>-->
+            <!--<arg value="${flex.src.dir}"/>-->
+            <arg value="-source-path=${flex.src.dir}/locale/{locale}"/>
+            <arg value="-library-path+=${lib.dir.flex}"/>
+            <arg value="-locale=en_US"/>
+        </java>
+    </target>
+
+    <!--<target name="redeploy.db">-->
+    <!--<SSHExec host="localhost"-->
+    <!--trust="yes"-->
+    <!--failonerror="false"-->
+    <!--timeout="30000"-->
+    <!--username="${ssh.username}"-->
+    <!--password="${ssh.password}"-->
+    <!--command="cd ${checkout.path}/db;bash updatedb.sh myads1;bash updatedb.sh myads2;bash updatedb.sh myads3;"/>-->
+    <!--</target>-->
+
+    <!--<target name="redeploy.db-prod">-->
+    <!--<SSHExec host="localhost"-->
+    <!--trust="yes"-->
+    <!--failonerror="false"-->
+    <!--timeout="30000"-->
+    <!--username="${ssh.username}"-->
+    <!--password="${ssh.password}"-->
+    <!--command="cd ${checkout.path}/db;bash updatedb.sh myads1;bash updatedb.sh myads2;bash updatedb.sh myads3;"/>-->
+    <!--</target>-->
+
+    <target name="test" depends="compile.test">
+        <junit haltonfailure="true">
+            <classpath refid="test.class.path"/>
+            <classpath location="${build.dir.tests}"/>
+            <formatter type="brief" usefile="false"/>
+            <batchtest fork="yes" todir="${reports.tests}">
+                <fileset dir="${src.dir.test}">
+                    <include name="**/*Test*.java"/>
+                    <exclude name="**/AllTests.java"/>
+                    <exclude name="com/adserversoft/flexfuse/client/*"/>
+                </fileset>
+            </batchtest>
+
+        </junit>
+    </target>
+
+    <target name="test.client" depends="compile.test">
+        <parallel>
+            <sequential>
+                <echo taskname="waitfor" message="Wait for proxy server launch"/>
+                <waitfor maxwait="2" maxwaitunit="minute" checkevery="100">
+                    <http url="http://localhost:4444/selenium-server/driver/?cmd=testComplete"/>
+                </waitfor>
+                <antcall target="run_clienttests"></antcall>
+            </sequential>
+        </parallel>
+
+    </target>
+
+    <target name="run_clienttests">
+        <junit haltonfailure="true">
+            <classpath refid="test.class.path"/>
+            <classpath location="${build.dir.tests}"/>
+            <formatter type="brief" usefile="false"/>
+            <batchtest fork="yes" todir="${reports.tests}">
+                <fileset dir="${src.dir.test}">
+                    <include name="com/adserversoft/flexfuse/client/*Test.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <!--<target name="start-server">-->
+    <!--<java jar="lib/optional/selenium-server.jar" fork="true" spawn="true">-->
+    <!--<arg line="-firefoxProfileTemplate /home/vitaly/selenium -userExtensions /opt/checkout/myads/user-extensions.js"/>-->
+    <!--&lt;!&ndash;<jvmarg value="-Dhttp.proxyHost=proxy.corporate.com"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<jvmarg value="-Dhttp.proxyPort=3128"/>&ndash;&gt;-->
+    <!--</java>-->
+    <!--</target>-->
+
+    <!--<target name="stop-server">-->
+    <!--<get taskname="selenium-shutdown"-->
+    <!--src="http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer"-->
+    <!--dest="/opt/result.txt"-->
+    <!--ignoreerrors="true"/>-->
+    <!--<echo taskname="selenium-shutdown" message="DGF Errors during shutdown are expected"/>-->
+    <!--</target>-->
+
+
+    <target name="war">
+        <antcall target="clean"></antcall>
+        <antcall target="update.version"></antcall>
+        <antcall target="jar"></antcall>
+        <antcall target="flex.swf"></antcall>
+        <antcall target="flex.resources"></antcall>
+
+        <war destfile="${app.name}.war" webxml="${flex.dir.web}/WEB-INF/web.xml">
+            <fileset dir="${flex.dir.web}"/>
+            <lib dir="${lib.dir.core}"/>
+            <lib dir="${lib.dir.required}"/>
+        </war>
+    </target>
+
+    <target name="war-prod">
+        <antcall target="clean"></antcall>
+        <antcall target="update.version"></antcall>
+        <antcall target="jar"></antcall>
+        <antcall target="flex.swf.prod"></antcall>
+        <antcall target="flex.resources"></antcall>
+
+        <war destfile="${app.name}.war" webxml="${flex.dir.web}/WEB-INF/web.xml">
+            <fileset dir="${flex.dir.web}"/>
+            <lib dir="${lib.dir.core}"/>
+            <lib dir="${lib.dir.optional}"/>
+            <lib dir="${lib.dir.required}"/>
+        </war>
+    </target>
+
+
+</project>
+
+
+
+
